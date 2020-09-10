@@ -1,0 +1,15 @@
+post http://localhost:3000/api/v1/create_user HTTP/1.1
+content-type: application/json
+
+{
+  "email": "joloh57@jmal.com", 
+  "password": "abdul5769", 
+  "first_name": "jaji" ,
+   "last_name" : "gsffd"
+}
+
+#####################################################
+
+get http://localhost:3000/api/v1/get_users HTTP/1.1
+content-type: application/json
+
