@@ -1,15 +1,38 @@
-post http://localhost:3000/api/v1/create_user HTTP/1.1
+post http://localhost:5000/api/v1/create_user HTTP/1.1
 content-type: application/json
 
 {
   "email": "joloh57@jmal.com", 
   "password": "abdul5769", 
   "first_name": "jaji" ,
-   "last_name" : "gsffd"
+  "last_name" : "kaura",
+  "phone_number" : "08060929192"
 }
 
 #####################################################
+//get users
 
 get http://localhost:3000/api/v1/get_users HTTP/1.1
 content-type: application/json
+Authorization: BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvbG9oNTdAam1hbC5jb20iLCJyb2xlIjoiQWRtaW4iLCJ1c2VybmFtZSI6ImFiZHVsMTIzIiwiaWF0IjoxNjAxMTI5NDgxLCJleHAiOjE2MDExMjk0ODF9.xim-foZUgHHEqnXjZB76pxiK_3naFIsXMuvJc1JqbPQ
 
+#####################################################
+// login
+post http://localhost:5000/api/v1/login HTTP/1.1
+content-type: application/json
+
+{
+  "email": "joloh57@jmal.com",
+  "password": "abdul5769"
+}
+
+###############################################
+// create leave
+
+post http://localhost:3000/api/v1/login HTTP/1.1
+content-type: application/json
+
+{
+  "username": "abdul123",
+  "password": "abdul123"
+}

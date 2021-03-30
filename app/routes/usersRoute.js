@@ -12,12 +12,13 @@ routes.use('/', (req, res, next) => {
     next();
 })
 
-routes.post('/create_user',  users.adminCreateUser);
-routes.post('/admin_update_user',  users.adminUpdateUser);
-routes.post('/hr_update_user',  users.hrUpdateUser);
-routes.post('/profile_update',  users.userUpdateUser);
-routes.post('/reset_credential',  users.resetCredential);
-routes.get('/get_users',  users.findAll);
-//router.get('/buses', verifyAuth, getAllBuses);
+routes.post('/create_user',  users.createUser);
+// routes.post('/profile_update/:UsersId',  users.userUpdateUser);
+// routes.post('/reset_credential',  users.resetCredential);
+// routes.get('/get_users', users.findAll);
+// routes.get('/get_single_users/:UsersId',  users.findOne);
+// routes.delete('/delete_user/:UsersId',  users.delete);
+routes.post('/login',  users.siginUser);
+// routes.get('/get_users', verifyAuth, users.findAll);
 
 module.exports = routes;

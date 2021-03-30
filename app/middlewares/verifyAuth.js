@@ -15,8 +15,8 @@ dotenv.config();
    * @returns {object|void} response object 
    */
 
-exports.verifyToken = async (req, res, next) => {
-  const { token } = req.headers;
+module.exports = async (req, res, next) => {
+  const { token } = req.headers.authorization;
   if (!token) {
     message.errorMessage.error = 'Token not provided';
     return res.status(message.status.bad).send(message.errorMessage);
@@ -25,10 +25,8 @@ exports.verifyToken = async (req, res, next) => {
     const decoded =  jwt.verify(token, process.env.SECRET);
     req.user = {
       email: decoded.email,
-      user_id: decoded.user_id,
       role: decoded.role,
-      first_name: decoded.first_name,
-      last_name: decoded.last_name,
+      username: decoded.username, 
     };
     next();
   } catch (error) {

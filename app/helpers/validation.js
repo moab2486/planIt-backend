@@ -1,9 +1,7 @@
-//import env from '../../env';
-const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const jwt = require('jsonwebtoken');
 
 /**
    * hashedPassword helper method
@@ -51,6 +49,20 @@ exports.isEmpty = (input) => {
 };
 
 /**
+ * isEmpty helper method
+ * @param {string, integer} input
+ * @returns {Boolean} True or False
+*/
+exports.comparePassword = (password, dbpassword) => {
+  const result = bcrypt.compareSync(password, dbpassword )
+    if(result) {
+      return true
+    } else {
+      return false
+    }
+};
+
+/**
  * empty helper method
  * @param {string, integer} input
  * @returns {Boolean} True or False
@@ -61,14 +73,16 @@ exports.empty = (input) => {
   }
 };
 
-exports.generateUserToken = (email, id, role, first_name, last_name) => {
-  const token = jwt.jwt.sign({
-    email,
-    user_id: id,
-    role,
-    first_name,
-    last_name
-  },
-  process.env.TOKEN_SECRET, {expires_in: '3d'});
-  return token
+exports.generateUserToken = (email, phone_number, id) => {
+  const access_token = jwt.sign ({ email, phone_number, id }, 
+                                process.env.ACCESS_TOKEN_SECRET, 
+                                {expiresIn: process.env.ACCESS_TOKEN_LIFE});
+  
+  return access_token
+};
+
+exports.generateRefreshToken = (email, id, phone_number) => {
+  const refresh_token = jwt.sign ({ email, id, phone_number }, 
+                                process.env.REFRESH_TOKEN_SECRET);
+  return refresh_token
 };
